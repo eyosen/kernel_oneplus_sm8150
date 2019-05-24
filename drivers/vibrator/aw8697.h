@@ -466,6 +466,7 @@ struct aw8697 {
     int index;
     int vmax;
     int gain;
+    int level;
 
     unsigned char seq[AW8697_SEQUENCER_SIZE];
     unsigned char loop[AW8697_SEQUENCER_SIZE];
@@ -539,4 +540,3 @@ struct aw8697_que_seq {
 #define AW8697_HAPTIC_SET_GAIN            _IOWR(AW8697_HAPTIC_IOCTL_MAGIC, 6, unsigned int)
 #define AW8697_HAPTIC_PLAY_REPEAT_SEQ     _IOWR(AW8697_HAPTIC_IOCTL_MAGIC, 7, unsigned int)
 #endif
-
