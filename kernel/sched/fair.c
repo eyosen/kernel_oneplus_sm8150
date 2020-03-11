@@ -7445,6 +7445,7 @@ enum fastpaths {
 	NONE = 0,
 	SYNC_WAKEUP,
 	PREV_CPU_FASTPATH,
+	BOOSTED_MID_CAP_CPU,
 };
 
 static inline int find_best_target(struct task_struct *p, int *backup_cpu,
@@ -7637,6 +7638,7 @@ static inline int find_best_target(struct task_struct *p, int *backup_cpu,
 				 */
 				if (boosted && mid_cap_orig_cpu != -1 &&
 					best_idle_cpu == mid_cap_orig_cpu)
+					fbt_env->fastpath = BOOSTED_MID_CAP_CPU;
 					break;
 				if (idle_cpu(i)) {
 					if (boosted &&
