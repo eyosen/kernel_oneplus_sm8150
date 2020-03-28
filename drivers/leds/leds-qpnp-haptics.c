@@ -359,6 +359,7 @@ struct hap_chip {
 	bool				lra_auto_mode;
 	bool				play_irq_en;
 	bool				auto_res_err_recovery_hw;
+	int				vmax_override;
 	u32				vmax_mv_strong;
 	u32				vmax_mv_call;
 	u32				vmax_mv_user;
