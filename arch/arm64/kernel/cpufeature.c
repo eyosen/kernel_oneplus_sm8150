@@ -940,7 +940,7 @@ static bool cpu_can_use_dbm(const struct arm64_cpu_capabilities *cap)
 	return has_cpu_feature && !cpu_has_broken_dbm();
 }
 
-static int cpu_enable_hw_dbm(void *entry)
+static void cpu_enable_hw_dbm(const struct arm64_cpu_capabilities *entry)
 {
 	const struct arm64_cpu_capabilities *cap =
 		(const struct arm64_cpu_capabilities *) entry;
@@ -948,7 +948,7 @@ static int cpu_enable_hw_dbm(void *entry)
 	if (cpu_can_use_dbm(cap))
 		__cpu_enable_hw_dbm();
 
-	return 0;
+	return;
 }
 
 static bool has_hw_dbm(const struct arm64_cpu_capabilities *cap,
@@ -1136,7 +1136,7 @@ static const struct arm64_cpu_capabilities arm64_features[] = {
 		.field_pos = ID_AA64MMFR1_HADBS_SHIFT,
 		.min_field_value = 2,
 		.matches = has_hw_dbm,
-		.enable = cpu_enable_hw_dbm,
+		.cpu_enable = cpu_enable_hw_dbm,
 	},
 #endif
 	{},
