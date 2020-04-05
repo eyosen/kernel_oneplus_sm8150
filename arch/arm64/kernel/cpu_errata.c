@@ -691,24 +691,17 @@ const struct arm64_cpu_capabilities arm64_errata[] = {
 	},
 	{
 		.capability = ARM64_HARDEN_BRANCH_PREDICTOR,
-		ERRATA_MIDR_RANGE_LIST(qcom_bp_harden_cpus),
-		.cpu_enable = qcom_enable_link_stack_sanitization,
-	},
-	{
-		.capability = ARM64_HARDEN_BP_POST_GUEST_EXIT,
-		ERRATA_MIDR_RANGE_LIST(qcom_bp_harden_cpus),
-	},
-	{
-		.capability = ARM64_HARDEN_BRANCH_PREDICTOR,
 		ERRATA_MIDR_RANGE(MIDR_KRYO4G,
 						12, 14,
 						13, 14),
-		.cpu_enable = enable_smccc_arch_workaround_1,
+		.type = ARM64_CPUCAP_LOCAL_CPU_ERRATUM,
+		.matches = check_branch_predictor,
 	},
 	{
 		.capability = ARM64_HARDEN_BRANCH_PREDICTOR,
 		ERRATA_MIDR_ALL_VERSIONS(MIDR_KRYO2XX_GOLD),
-		.cpu_enable = enable_smccc_arch_workaround_1,
+		.type = ARM64_CPUCAP_LOCAL_CPU_ERRATUM,
+		.matches = check_branch_predictor,
 	},
 	{
 		.desc = "Speculative Store Bypass Disable",
